@@ -1,0 +1,23 @@
+<form (ngSubmit)="addMeal()">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="meal.title" name="title" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ingredients</mat-label>
+      <input matInput [(ngModel)]="ingredient" (keydown.enter)="addIngredient()" placeholder="Press Enter to add" name="ingredients">
+    </mat-form-field>
+    <mat-chip-listbox>
+      <mat-chip *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</mat-chip>
+    </mat-chip-listbox>
+    <mat-form-field>
+      <mat-label>Cooking Time (minutes)</mat-label>
+      <input matInput [(ngModel)]="meal.cookTime" name="cookTime" type="number" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Effort Level</mat-label>
+      <input matInput [(ngModel)]="meal.effortLevel" name="effortLevel" type="number" min="1" max="5" step="1">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Add Meal</button>
+  </form>
+  
