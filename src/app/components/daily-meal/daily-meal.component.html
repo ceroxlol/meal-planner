@@ -1,13 +1,6 @@
-<div *ngIf="meal">
-    <h2>Today's Meal: {{ meal.title }}</h2>
-    <p>Cooking Time: {{ meal.cookTime }} minutes</p>
-    <p>Effort Level: {{ meal.effortLevel }} / 5</p>
-    <h3>Ingredients</h3>
-    <ul>
-      <li *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</li>
-    </ul>
-  </div>
-  <div *ngIf="!meal">
-    <p>No meal chosen for today.</p>
-  </div>
-  
+<div class="daily-meal">
+  <span>{{ dailyMeal?.title || 'No Meal Selected' }}</span>
+  <button mat-icon-button (click)="navigateToMealDetail()">
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+</div>

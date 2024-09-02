@@ -1,23 +1,44 @@
-<form (ngSubmit)="addMeal()">
-    <mat-form-field>
-      <mat-label>Title</mat-label>
-      <input matInput [(ngModel)]="meal.title" name="title" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Ingredients</mat-label>
-      <input matInput [(ngModel)]="ingredient" (keydown.enter)="addIngredient()" placeholder="Press Enter to add" name="ingredients">
-    </mat-form-field>
-    <mat-chip-listbox>
-      <mat-chip *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</mat-chip>
-    </mat-chip-listbox>
-    <mat-form-field>
-      <mat-label>Cooking Time (minutes)</mat-label>
-      <input matInput [(ngModel)]="meal.cookTime" name="cookTime" type="number" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Effort Level</mat-label>
-      <input matInput [(ngModel)]="meal.effortLevel" name="effortLevel" type="number" min="1" max="5" step="1">
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Add Meal</button>
-  </form>
-  
+<mat-card>
+  <mat-card-title>Add a New Meal</mat-card-title>
+  <mat-card-content>
+    <form (ngSubmit)="addMeal()" class="meal-form">
+      <!-- Title Input -->
+      <mat-form-field class="full-width">
+        <mat-label>Meal Title</mat-label>
+        <input matInput [(ngModel)]="meal.title" name="title" required>
+      </mat-form-field>
+
+      <!-- Ingredients Input -->
+      <mat-form-field>
+        <mat-label>Ingredients</mat-label>
+        <input matInput [(ngModel)]="newIngredient" (keydown.enter)="addIngredient($event)" placeholder="Press Enter to add" name="Ingredients">
+      </mat-form-field>
+      
+      <mat-chip-listbox class="ingredient-chip-list" aria-label="Ingredient selection">
+        <mat-chip *ngFor="let ingredient of meal.ingredients" class="ingredient-chip">
+          {{ ingredient }}
+        </mat-chip>
+      </mat-chip-listbox>
+      
+
+      <!-- Cooking Time Input -->
+      <mat-form-field class="full-width">
+        <mat-label>Cooking Time (minutes)</mat-label>
+        <input matInput [(ngModel)]="meal.cookTime" name="cookTime" type="number" required>
+      </mat-form-field>
+
+      <!-- Effort Level Input -->
+      <div class="effort-rating">
+        <label>Effort Level:</label>
+        <ng-container *ngFor="let star of [1, 2, 3]; let i = index">
+          <mat-icon class="star" [class.filled]="i < meal.effortLevel" (click)="setEffortLevel(i + 1)">
+            {{ i < meal.effortLevel ? 'star' : 'star_border' }}
+          </mat-icon>
+        </ng-container>
+      </div>
+
+      <!-- Submit Button -->
+      <button mat-raised-button color="primary" type="submit">Add Meal</button>
+    </form>
+  </mat-card-content>
+</mat-card>

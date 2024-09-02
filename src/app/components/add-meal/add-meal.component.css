@@ -1,0 +1,58 @@
+.meal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px; /* Add margin at the bottom */
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .effort-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .effort-rating .star {
+    cursor: pointer;
+    font-size: 30px;
+    color: #FFD700; /* Gold color */
+  }
+  
+  .effort-rating .star.filled {
+    color: #FFD700; /* Gold color */
+  }
+  
+  mat-card {
+    padding: 16px;
+    margin-top: 16px; /* Add margin to the top */
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .ingredient-list {
+    margin-top: 10px;
+  }
+  
+  .ingredient-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .ingredient-item mat-icon {
+    color: red;
+    cursor: pointer;
+  }
+  

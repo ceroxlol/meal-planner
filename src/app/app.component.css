@@ -1,0 +1,22 @@
+.main-container {
+    padding: 16px;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  
+  .left-content {
+    flex: 1;
+  }
+  
+  .right-content {
+    flex: 1;
+  }
+  
+  mat-toolbar {
+    margin-bottom: 16px;
+  }
+  

@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { MealService } from '../../services/meal.service';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Meal } from '../../meal.model';
-import { CommonModule } from '@angular/common';
+
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-daily-meal',
-  templateUrl: './daily-meal.component.html',
   standalone: true,
   imports: [
-    CommonModule
-  ]
+    MatIconModule
+  ],
+  templateUrl: './daily-meal.component.html',
+  styleUrls: ['./daily-meal.component.css']
 })
-export class DailyMealComponent implements OnInit {
-  meal: Meal | null = null;
+export class DailyMealComponent {
+  @Input() dailyMeal: Meal | null = null;
 
-  constructor(private mealService: MealService) {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    this.meal = this.mealService.getDailyMeal();
+  navigateToMealDetail(): void {
+    if (this.dailyMeal) {
+      this.router.navigate(['/meal-detail', this.dailyMeal.id]);
+    }
   }
 }
