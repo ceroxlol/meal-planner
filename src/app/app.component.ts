@@ -9,6 +9,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card'; 
 import { Meal } from './meal.model';
 
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,12 +20,17 @@ import { Meal } from './meal.model';
     AddMealComponent,
     MealListComponent,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'meal-planner';
-  selectedMeal!: Meal | null;
+  selectedMeal: Meal | null = null;
+
+  onMealSelected(meal: Meal): void {
+    this.selectedMeal = meal;
+  }
 }

@@ -33,8 +33,9 @@ export class AddMealComponent {
     id: 0,
     title: '',
     ingredients: [],
-    cookTime: 0,
-    effortLevel: 1
+    timeToCook: 0,
+    effortLevel: 1,
+    imageUrl: ''
   };
 
   newIngredient: string = ''; // New ingredient input
@@ -74,8 +75,9 @@ export class AddMealComponent {
       id: 0,
       title: '',
       ingredients: [],
-      cookTime: 0,
-      effortLevel: 1
+      timeToCook: 0,
+      effortLevel: 1,
+      imageUrl: ''
     };
     this.newIngredient = ''; // Reset the input field
   }

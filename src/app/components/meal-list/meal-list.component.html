@@ -1,6 +1,10 @@
-<mat-list *ngIf="meals">
-    <mat-list-item *ngFor="let meal of meals">
-      {{ meal.title }}
-      <button mat-button (click)="selectMeal(meal)">View</button>
-    </mat-list-item>
-  </mat-list>
+<div class="meal-list">
+  <mat-card *ngFor="let meal of meals" (click)="openMealDetails(meal)" class="meal-card">
+    <img [src]="meal.imageUrl" alt="{{ meal.title }}" class="meal-image">
+    <mat-card-content>
+      <h3>{{ meal.title }}</h3>
+      <p>Time to Cook: {{ meal.timeToCook }} minutes</p>
+      <p>Effort Level: {{ meal.effortLevel }}/5</p>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,15 @@
+<div *ngIf="meal; else noMealFound">
+    <h2>{{ meal.title }}</h2>
+    <img [src]="meal.imageUrl" alt="{{ meal.title }}" class="meal-detail-image">
+    <p>Time to Cook: {{ meal.timeToCook }} minutes</p>
+    <p>Effort Level: {{ meal.effortLevel }}/5</p>
+    <h3>Ingredients</h3>
+    <ul>
+      <li *ngFor="let ingredient of meal?.ingredients">{{ ingredient }}</li>
+    </ul>
+  </div>
+  
+  <ng-template #noMealFound>
+    <p>Meal not found.</p>
+  </ng-template>
+  
