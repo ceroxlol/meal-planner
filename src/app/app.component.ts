@@ -5,8 +5,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DailyMealComponent } from './components/daily-meal/daily-meal.component';
 import { AddMealComponent } from './components/add-meal/add-meal.component';
 import { MealListComponent } from './components/meal-list/meal-list.component';
-import {MatGridListModule} from '@angular/material/grid-list'; 
-import {MatCardModule} from '@angular/material/card'; 
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 import { Meal } from './meal.model';
 
 import { RouterModule } from '@angular/router';
@@ -27,10 +27,10 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     RouterModule,
     MatIconModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'meal-planner';
@@ -47,5 +47,13 @@ export class AppComponent {
 
   clearSelectedMeal(): void {
     this.selectedMeal = null;
+  }
+
+  onOverlayClick(): void {
+    if (this.showAddMeal) {
+      this.toggleAddMeal();
+    } else if (this.selectedMeal) {
+      this.clearSelectedMeal();
+    }
   }
 }

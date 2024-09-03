@@ -19,8 +19,8 @@
 
 <!-- Overlay for Adding a New Meal -->
 <ng-container *ngIf="showAddMeal">
-  <div class="overlay">
-    <div class="overlay-content">
+  <div class="overlay" (click)="onOverlayClick()">
+    <div class="overlay-content" (click)="$event.stopPropagation()">
       <app-add-meal (close)="toggleAddMeal()"></app-add-meal>
     </div>
   </div>
@@ -28,9 +28,12 @@
 
 <!-- Overlay for Meal Details -->
 <ng-container *ngIf="selectedMeal">
-  <div class="overlay">
-    <div class="overlay-content">
-      <app-meal-detail [meal]="selectedMeal" (close)="clearSelectedMeal()"></app-meal-detail>
+  <div class="overlay" (click)="onOverlayClick()">
+    <div class="overlay-content" (click)="$event.stopPropagation()">
+      <app-meal-detail
+        [meal]="selectedMeal"
+        (close)="clearSelectedMeal()"
+      ></app-meal-detail>
     </div>
   </div>
 </ng-container>
