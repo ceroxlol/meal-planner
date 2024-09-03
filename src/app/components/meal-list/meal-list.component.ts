@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Meal } from '../../meal.model';
 
 import {MatListModule} from '@angular/material/list'; 
