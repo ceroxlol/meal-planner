@@ -10,6 +10,7 @@ import {MatCardModule} from '@angular/material/card';
 import { Meal } from './meal.model';
 
 import { RouterModule } from '@angular/router';
+import { MealDetailComponent } from './components/meal-detail/meal-detail.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     MatToolbarModule,
     DailyMealComponent,
     AddMealComponent,
+    MealDetailComponent,
     MealListComponent,
     MatGridListModule,
     MatCardModule,

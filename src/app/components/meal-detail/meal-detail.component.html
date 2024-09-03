@@ -1,11 +1,17 @@
-<div *ngIf="meal">
-    <h2>{{ meal.title }}</h2>
-    <p>Cooking Time: {{ meal.cookTime }} minutes</p>
-    <p>Effort Level: {{ meal.effortLevel }} / 5</p>
-    <h3>Ingredients</h3>
-    <ul>
-      <li *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</li>
-    </ul>
-    <button mat-button (click)="setAsDailyMeal()">Set as Daily Meal</button>
-  </div>
-  
+<mat-card *ngIf="meal; else noMealSelected">
+  <mat-card-title>{{ meal.title }}</mat-card-title>
+  <mat-card-content>
+    <p><strong>Ingredients:</strong></p>
+    <mat-list>
+      <mat-list-item *ngFor="let ingredient of meal.ingredients">
+        {{ ingredient }}
+      </mat-list-item>
+    </mat-list>
+    <p><strong>Cooking Time:</strong> {{ meal.timeToCook }} minutes</p>
+    <p><strong>Effort Level:</strong> {{ meal.effortLevel }}/5</p>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #noMealSelected>
+  <p>Please select a meal to see the details.</p>
+</ng-template>

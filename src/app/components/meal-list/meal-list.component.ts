@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Meal } from '../../meal.model';
 
 import {MatListModule} from '@angular/material/list'; 
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { MealService } from '../../services/meal.service';
 
 @Component({
   selector: 'app-meal-list',
@@ -34,10 +35,15 @@ export class MealListComponent {
     // Add more meals as needed
   ];
 
-  constructor(private router: Router) {}
+  @Output() mealSelected = new EventEmitter<Meal>();
 
-  openMealDetails(meal: Meal) {
-    // Navigate to the meal details, pass meal id as a parameter (or ID if available)
-    this.router.navigate(['/meal-details', meal.id]);
+  constructor(private mealService: MealService) {}
+
+  ngOnInit(): void {
+    this.meals = this.mealService.getMeals();
+  }
+
+  selectMeal(meal: Meal): void {
+    this.mealSelected.emit(meal);
   }
 }

@@ -2,17 +2,9 @@
   <span>{{ title }}</span>
 </mat-toolbar>
 
-<div class="main-container">
-  <!-- Daily Meal Section -->
-  <app-daily-meal [dailyMeal]="selectedMeal"></app-daily-meal>
-
-  <div class="content">
-    <!-- Add Meal Form -->
-    <app-add-meal class="left-content"></app-add-meal>
-
-    <!-- Meal List -->
-    <app-meal-list class="right-content"></app-meal-list>
-
-    <router-outlet></router-outlet>
-  </div>
+<div class="container">
+  <app-daily-meal></app-daily-meal>
+  <app-add-meal></app-add-meal>
+  <app-meal-list (mealSelected)="onMealSelected($event)"></app-meal-list>
+  <app-meal-detail [meal]="selectedMeal"></app-meal-detail>
 </div>
