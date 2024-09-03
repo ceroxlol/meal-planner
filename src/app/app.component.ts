@@ -11,6 +11,8 @@ import { Meal } from './meal.model';
 
 import { RouterModule } from '@angular/router';
 import { MealDetailComponent } from './components/meal-detail/meal-detail.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -23,16 +25,27 @@ import { MealDetailComponent } from './components/meal-detail/meal-detail.compon
     MealListComponent,
     MatGridListModule,
     MatCardModule,
-    RouterModule
+    RouterModule,
+    MatIconModule,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'meal-planner';
+  showAddMeal = false;
   selectedMeal: Meal | null = null;
+
+  toggleAddMeal(): void {
+    this.showAddMeal = !this.showAddMeal;
+  }
 
   onMealSelected(meal: Meal): void {
     this.selectedMeal = meal;
+  }
+
+  clearSelectedMeal(): void {
+    this.selectedMeal = null;
   }
 }

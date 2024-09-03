@@ -1,22 +1,58 @@
-.main-container {
-    padding: 16px;
-  }
-  
-  .content {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-  }
-  
-  .left-content {
-    flex: 1;
-  }
-  
-  .right-content {
-    flex: 1;
-  }
-  
-  mat-toolbar {
-    margin-bottom: 16px;
-  }
-  
+/* General container padding */
+.container {
+  padding: 16px;
+}
+
+/* Center the daily meal component */
+.daily-meal-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.daily-meal-container app-daily-meal {
+  width: 50%; /* Adjust width as needed */
+  max-width: 600px;
+}
+
+/* Meal list container with padding */
+.meal-list-container {
+  position: relative;
+  padding: 16px;
+}
+
+/* Floating button to add a new meal */
+.meal-list-container button[mat-fab] {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+/* Overlay styles for add meal and meal detail */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Ensure that the overlay content does not exceed screen height */
+.overlay-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}

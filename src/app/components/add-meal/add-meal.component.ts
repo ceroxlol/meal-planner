@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MealService } from '../../services/meal.service';
 import { Meal } from '../../meal.model';
 import { CommonModule } from '@angular/common';
@@ -80,6 +80,13 @@ export class AddMealComponent {
       imageUrl: ''
     };
     this.newIngredient = ''; // Reset the input field
+  }
+
+  @Output() close = new EventEmitter<void>();
+
+  // Method to close the overlay
+  closeOverlay(): void {
+    this.close.emit();
   }
 
 }

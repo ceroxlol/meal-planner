@@ -3,8 +3,34 @@
 </mat-toolbar>
 
 <div class="container">
-  <app-daily-meal></app-daily-meal>
-  <app-add-meal></app-add-meal>
-  <app-meal-list (mealSelected)="onMealSelected($event)"></app-meal-list>
-  <app-meal-detail [meal]="selectedMeal"></app-meal-detail>
+  <!-- Centered Daily Meal Component -->
+  <div class="daily-meal-container">
+    <app-daily-meal></app-daily-meal>
+  </div>
+
+  <!-- Meal List with Padding -->
+  <div class="meal-list-container">
+    <app-meal-list (mealSelected)="onMealSelected($event)"></app-meal-list>
+    <button mat-fab color="primary" (click)="toggleAddMeal()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>
+
+<!-- Overlay for Adding a New Meal -->
+<ng-container *ngIf="showAddMeal">
+  <div class="overlay">
+    <div class="overlay-content">
+      <app-add-meal (close)="toggleAddMeal()"></app-add-meal>
+    </div>
+  </div>
+</ng-container>
+
+<!-- Overlay for Meal Details -->
+<ng-container *ngIf="selectedMeal">
+  <div class="overlay">
+    <div class="overlay-content">
+      <app-meal-detail [meal]="selectedMeal" (close)="clearSelectedMeal()"></app-meal-detail>
+    </div>
+  </div>
+</ng-container>
