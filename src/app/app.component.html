@@ -5,7 +5,7 @@
 <div class="container">
   <!-- Centered Daily Meal Component -->
   <div class="daily-meal-container">
-    <app-daily-meal></app-daily-meal>
+    <app-daily-meal (dailyMealSelected)="onMealSelected($event)"></app-daily-meal>
   </div>
 
   <!-- Meal List with Padding -->

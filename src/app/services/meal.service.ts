@@ -69,11 +69,18 @@ export class MealService {
     this.meals.push(meal);
   }
 
-  setDailyMeal(meal: Meal): void {
-    this.dailyMeal = meal;
-  }
-
   getDailyMeal(): Meal | null {
     return this.dailyMeal;
+  }
+
+  selectRandomMeal(): Meal {
+    const randomIndex = Math.floor(Math.random() * this.meals.length);
+    return this.meals[randomIndex];
+  }
+
+  setRandomDailyMealIfNone(): void {
+    if (!this.dailyMeal && this.meals.length > 0) {
+      this.dailyMeal = this.selectRandomMeal();
+    }
   }
 }

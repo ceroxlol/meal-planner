@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Meal } from '../../meal.model';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MealService } from '../../services/meal.service';
 
 @Component({
   selector: 'app-daily-meal',
@@ -11,11 +12,19 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./daily-meal.component.css'],
 })
 export class DailyMealComponent {
-  @Input() dailyMeal: Meal | null = null;
+  meal: Meal | null = null;
 
-  constructor() {}
+  @Output() dailyMealSelected = new EventEmitter<Meal>();
 
-  openMeal() {
-    throw new Error('Method not implemented.');
+  constructor(private mealService: MealService) {}
+
+  openDailyMeal(): void {
+    if (this.meal) this.dailyMealSelected.emit(this.meal);
+  }
+
+  ngOnInit(): void {
+    // Automatically set a random daily meal if none is set
+    this.mealService.setRandomDailyMealIfNone();
+    this.meal = this.mealService.getDailyMeal();
   }
 }

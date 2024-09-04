@@ -1,6 +1,4 @@
-<div class="daily-meal">
-  <span>{{ dailyMeal?.title || 'No Meal Selected' }}</span>
-  <button mat-icon-button (click)="openMeal()">
-    <mat-icon>arrow_forward</mat-icon>
-  </button>
+<div class="daily-meal" (click)="openDailyMeal()">
+  <img class="daily-meal-image" [src]="meal?.imageUrl" alt="Meal Image" />
+  <span>{{ meal?.title || 'No Meal Selected' }}</span>
 </div>
