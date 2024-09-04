@@ -68,6 +68,7 @@ export class AddMealComponent {
     this.meal.ingredients = this.meal.ingredients.filter(ingredient => ingredient.trim() !== '');
     this.mealService.addMeal(this.meal);
     this.resetForm();
+    this.closeOverlay();
   }
 
   resetForm(): void {

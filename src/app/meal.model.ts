@@ -3,6 +3,6 @@ export interface Meal {
   title: string;
   ingredients: string[];
   timeToCook: number; // in minutes
-  effortLevel: number; // 1 to 5
+  effortLevel: number; // 1 to 3
   imageUrl: string;
 }

@@ -2,6 +2,7 @@
   <mat-card-title>Add a New Meal</mat-card-title>
   <mat-card-content>
     <form (ngSubmit)="addMeal()" class="meal-form">
+
       <!-- Title Input -->
       <mat-form-field class="full-width">
         <mat-label>Meal Title</mat-label>
@@ -9,17 +10,16 @@
       </mat-form-field>
 
       <!-- Ingredients Input -->
-      <mat-form-field>
+      <mat-form-field class="full-width">
         <mat-label>Ingredients</mat-label>
         <input matInput [(ngModel)]="newIngredient" (keydown.enter)="addIngredient($event)" placeholder="Press Enter to add" name="Ingredients">
       </mat-form-field>
       
-      <mat-chip-listbox class="ingredient-chip-list" aria-label="Ingredient selection">
-        <mat-chip *ngFor="let ingredient of meal.ingredients" class="ingredient-chip">
+      <mat-chip-listbox class="ingredient-chip-list">
+        <mat-chip *ngFor="let ingredient of meal.ingredients; let i = index" class="ingredient-chip" (click)="removeIngredient(i)">
           {{ ingredient }}
         </mat-chip>
       </mat-chip-listbox>
-      
 
       <!-- Cooking Time Input -->
       <mat-form-field class="full-width">
@@ -30,12 +30,18 @@
       <!-- Effort Level Input -->
       <div class="effort-rating">
         <label>Effort Level:</label>
-        <ng-container *ngFor="let star of [1, 2, 3]; let i = index">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
           <mat-icon class="star" [class.filled]="i < meal.effortLevel" (click)="setEffortLevel(i + 1)">
             {{ i < meal.effortLevel ? 'star' : 'star_border' }}
           </mat-icon>
         </ng-container>
       </div>
+
+      <!-- Image URL Input -->
+      <mat-form-field class="full-width">
+        <mat-label>Image URL</mat-label>
+        <input matInput [(ngModel)]="meal.imageUrl" name="imageUrl" placeholder="http://example.com/meal.jpg">
+      </mat-form-field>
 
       <!-- Buttons -->
       <button mat-raised-button color="primary" type="submit">Add Meal</button>
