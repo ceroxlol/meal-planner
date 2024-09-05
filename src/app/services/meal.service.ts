@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Meal } from '../meal.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MealService {
+  private apiUrl = 'http://localhost:3000/api/meals';
+
   private meals: Meal[] = [
     {
       id: 0,
@@ -59,14 +63,22 @@ export class MealService {
   
   private dailyMeal: Meal | null = null;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getMeals(): Meal[] {
-    return this.meals;
+  getMeals(): Observable<Meal[]> {
+    return this.http.get<Meal[]>(this.apiUrl);
   }
 
-  addMeal(meal: Meal): void {
-    this.meals.push(meal);
+  addMeal(meal: Meal): Observable<Meal> {
+    return this.http.post<Meal>(this.apiUrl, meal);
+  }
+
+  updateMeal(id: string, meal: Meal): Observable<Meal> {
+    return this.http.put<Meal>(`${this.apiUrl}/${id}`, meal);
+  }
+
+  deleteMeal(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
   getDailyMeal(): Meal | null {

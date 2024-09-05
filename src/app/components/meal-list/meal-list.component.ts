@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Meal } from '../../meal.model';
 
-import {MatListModule} from '@angular/material/list'; 
+import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MealService } from '../../services/meal.service';
@@ -11,7 +11,7 @@ import { MealService } from '../../services/meal.service';
   standalone: true,
   templateUrl: './meal-list.component.html',
   styleUrls: ['./meal-list.component.css'],
-  imports: [MatListModule, CommonModule, MatCardModule]
+  imports: [MatListModule, CommonModule, MatCardModule],
 })
 export class MealListComponent {
   meals: Meal[] = [];
@@ -21,7 +21,9 @@ export class MealListComponent {
   constructor(private mealService: MealService) {}
 
   ngOnInit(): void {
-    this.meals = this.mealService.getMeals();
+    this.mealService.getMeals().subscribe((meals) => {
+      this.meals = meals;
+    });
   }
 
   selectMeal(meal: Meal): void {

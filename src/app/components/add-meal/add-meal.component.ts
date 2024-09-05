@@ -9,8 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon'; 
-
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-add-meal',
@@ -26,7 +25,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatCardModule,
     MatIconModule,
     MatChipsModule,
-  ]
+  ],
 })
 export class AddMealComponent {
   meal: Meal = {
@@ -35,7 +34,7 @@ export class AddMealComponent {
     ingredients: [],
     timeToCook: 0,
     effortLevel: 1,
-    imageUrl: ''
+    imageUrl: '',
   };
 
   newIngredient: string = ''; // New ingredient input
@@ -65,10 +64,13 @@ export class AddMealComponent {
 
   addMeal(): void {
     // Ensure there are no empty ingredients before saving
-    this.meal.ingredients = this.meal.ingredients.filter(ingredient => ingredient.trim() !== '');
-    this.mealService.addMeal(this.meal);
-    this.resetForm();
-    this.closeOverlay();
+    this.meal.ingredients = this.meal.ingredients.filter(
+      (ingredient) => ingredient.trim() !== ''
+    );
+    this.mealService.addMeal(this.meal).subscribe(() => {
+      this.resetForm();
+      this.closeOverlay();
+    });
   }
 
   resetForm(): void {
@@ -78,7 +80,7 @@ export class AddMealComponent {
       ingredients: [],
       timeToCook: 0,
       effortLevel: 1,
-      imageUrl: ''
+      imageUrl: '',
     };
     this.newIngredient = ''; // Reset the input field
   }
@@ -89,5 +91,4 @@ export class AddMealComponent {
   closeOverlay(): void {
     this.close.emit();
   }
-
 }
