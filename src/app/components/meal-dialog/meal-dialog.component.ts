@@ -22,7 +22,7 @@ import { MealService } from '../../services/meal.service';
   ],
 })
 export class MealDialogComponent {
-  @Input() componentTitle: string | null = null;
+  componentTitle: string = 'Add Meal';
   @Input() refreshTrigger = false;
   newIngredient = '';
 
@@ -30,7 +30,11 @@ export class MealDialogComponent {
     public dialogRef: MatDialogRef<MealDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { meal: Meal },
     private mealService: MealService
-  ) {}
+  ) {
+    if (this.data.meal.id) {
+      this.componentTitle = 'Edit Meal';
+    }
+  }
 
   onCancel(): void {
     this.dialogRef.close();

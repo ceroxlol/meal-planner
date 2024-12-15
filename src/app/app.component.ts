@@ -41,28 +41,15 @@ export class AppComponent {
     this.selectedMeal = meal;
   }
 
-  addMeal(): void {
+  openMealDialog(meal: Meal = {} as Meal): void {
     const dialogRef = this.dialog.open(MealDialogComponent, {
       width: '400px',
-      data: { meal: {}, componentTitle: 'Add Meal' },
+      data: { meal },
     });
 
-    dialogRef.afterClosed().subscribe((meal) => {
-      if (meal) {
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.refreshMeals = !this.refreshMeals;
-        // Handle the result from the dialog here
-      }
-    });
-  }
-
-  editMeal(meal: Meal): void {
-    const dialogRef = this.dialog.open(MealDialogComponent, {
-      width: '400px',
-      data: { meal, title: 'Edit Meal' },
-    });
-
-    dialogRef.afterClosed().subscribe((meal) => {
-      if (meal) {
       }
     });
   }
