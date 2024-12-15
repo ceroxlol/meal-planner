@@ -14,7 +14,8 @@ import { MealService } from '../../services/meal.service';
   imports: [MatListModule, CommonModule, MatCardModule],
 })
 export class MealListComponent {
-  @Input() meals: Meal[] = [];
+  meals: Meal[] = [];
+  @Input() refreshTrigger = false;
 
   @Output() mealSelected = new EventEmitter<Meal>();
 
@@ -24,8 +25,10 @@ export class MealListComponent {
     this.getMeals();
   }
 
-  ngOnchanges(): void {
-    this.getMeals();
+  ngOnChanges(): void {
+    if (this.refreshTrigger) {
+      this.getMeals();
+    }
   }
 
   getMeals(): void {

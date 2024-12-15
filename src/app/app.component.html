@@ -5,12 +5,17 @@
 <div class="container">
   <!-- Centered Daily Meal Component -->
   <div class="daily-meal-container">
-    <app-daily-meal (dailyMealSelected)="onMealSelected($event)"></app-daily-meal>
+    <app-daily-meal
+      (dailyMealSelected)="onMealSelected($event)"
+    ></app-daily-meal>
   </div>
 
   <!-- Meal List with Padding -->
   <div class="meal-list-container">
-    <app-meal-list (mealSelected)="onMealSelected($event)"></app-meal-list>
+    <app-meal-list
+      (mealSelected)="onMealSelected($event)"
+      [refreshTrigger]="refreshMeals"
+    ></app-meal-list>
     <button mat-fab color="primary" (click)="addMeal()">
       <mat-icon>add</mat-icon>
     </button>

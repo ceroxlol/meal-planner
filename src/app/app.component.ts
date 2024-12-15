@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -34,6 +34,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AppComponent {
   selectedMeal: Meal | null = null;
+  refreshMeals = false;
   constructor(private dialog: MatDialog) {}
 
   onMealSelected(meal: Meal): void {
@@ -42,21 +43,21 @@ export class AppComponent {
 
   addMeal(): void {
     const dialogRef = this.dialog.open(MealDialogComponent, {
-      width: '250px',
-      data: { meal: {}, title: 'Add Meal' },
+      width: '400px',
+      data: { meal: {}, componentTitle: 'Add Meal' },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+    dialogRef.afterClosed().subscribe((meal) => {
+      if (meal) {
+        this.refreshMeals = !this.refreshMeals;
         // Handle the result from the dialog here
-        console.log('The dialog was closed with result:', result);
       }
     });
   }
 
   editMeal(meal: Meal): void {
     const dialogRef = this.dialog.open(MealDialogComponent, {
-      width: '250px',
+      width: '400px',
       data: { meal, title: 'Edit Meal' },
     });
 

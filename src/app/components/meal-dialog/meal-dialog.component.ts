@@ -22,7 +22,8 @@ import { MealService } from '../../services/meal.service';
   ],
 })
 export class MealDialogComponent {
-  @Input() title: string | null = null;
+  @Input() componentTitle: string | null = null;
+  @Input() refreshTrigger = false;
   newIngredient = '';
 
   constructor(
@@ -36,9 +37,17 @@ export class MealDialogComponent {
   }
 
   onSave(): void {
-    this.mealService.updateMeal(this.data.meal).subscribe((updatedMeal: Meal) => {
-      this.dialogRef.close(updatedMeal); // Return the updated meal
-    });
+    if (!this.data.meal.id) {
+      this.mealService.addMeal(this.data.meal).subscribe((newMeal: Meal) => {
+        this.dialogRef.close(newMeal); // Return the new meal
+      });
+    } else {
+      this.mealService
+        .updateMeal(this.data.meal)
+        .subscribe((updatedMeal: Meal) => {
+          this.dialogRef.close(updatedMeal); // Return the updated meal
+        });
+    }
   }
 
   addIngredient(): void {
