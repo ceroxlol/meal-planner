@@ -3,16 +3,16 @@ import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { DailyMealComponent } from './components/daily-meal/daily-meal.component';
-import { AddMealComponent } from './components/add-meal/add-meal.component';
 import { MealListComponent } from './components/meal-list/meal-list.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { Meal } from './meal.model';
 
 import { RouterModule } from '@angular/router';
-import { MealDetailComponent } from './components/meal-detail/meal-detail.component';
-import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { EditMealDialogComponent } from './components/edit-meal-dialog/edit-meal-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +20,12 @@ import { CommonModule } from '@angular/common';
   imports: [
     MatToolbarModule,
     DailyMealComponent,
-    AddMealComponent,
-    MealDetailComponent,
     MealListComponent,
     MatGridListModule,
     MatCardModule,
     RouterModule,
+    CommonModule,
+    MatDialogModule,
     MatIconModule,
     CommonModule,
   ],
@@ -33,27 +33,52 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'meal-planner';
-  showAddMeal = false;
   selectedMeal: Meal | null = null;
-
-  toggleAddMeal(): void {
-    this.showAddMeal = !this.showAddMeal;
-  }
+  constructor(private dialog: MatDialog) {}
 
   onMealSelected(meal: Meal): void {
     this.selectedMeal = meal;
   }
 
-  clearSelectedMeal(): void {
-    this.selectedMeal = null;
+  addMeal(): void {
+    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+      width: '250px',
+      data: { meal: {}, title: 'Add Meal' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Handle the result from the dialog here
+        console.log('The dialog was closed with result:', result);
+      }
+    });
   }
 
-  onOverlayClick(): void {
-    if (this.showAddMeal) {
-      this.toggleAddMeal();
-    } else if (this.selectedMeal) {
-      this.clearSelectedMeal();
+  editMeal(meal: Meal): void {
+    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+      width: '250px',
+      data: { meal, title: 'Edit Meal' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Handle the result from the dialog here
+        console.log('The dialog was closed with result:', result);
+      }
+    });
+  }
+
+  upsertMeal(meal: Meal): void {
+    /*
+    if (meal.id) {
+      this.updateMeal(meal);
+    } else {
+      this.addMeal(meal);
     }
+      */
+  }
+
+  clearSelectedMeal(): void {
+    this.selectedMeal = null;
   }
 }

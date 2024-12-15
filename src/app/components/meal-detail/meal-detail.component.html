@@ -1,11 +1,20 @@
 <div *ngIf="meal">
-  <img mat-card-image [src]="meal.imageUrl" alt="{{ meal.title }}"
-     style="width: 100%; max-height: 200px; object-fit: cover;" *ngIf="meal.imageUrl">  <!-- Can't get it to work otherwise -->
-  <h2>{{ meal.title }}</h2>
-  <p>Cooking Time: {{ meal.timeToCook }} minutes</p>
-  <p>Effort Level: {{ meal.effortLevel }} / 5</p>
-  <h3>Ingredients</h3>
-  <ul>
-    <li *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</li>
-  </ul>
+  <mat-card>
+    <img mat-card-image [src]="meal.imageUrl" alt="{{ meal.title }}"
+         style="width: 100%; max-height: 200px; object-fit: cover;" *ngIf="meal.imageUrl">
+    <mat-card-content>
+      <h2>{{ meal.title }}</h2>
+      <p>Cooking Time: {{ meal.timeToCook }} minutes</p>
+      <p>Effort Level: {{ meal.effortLevel }} / 5</p>
+      <h3>Ingredients</h3>
+      <ul>
+        <li *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</li>
+      </ul>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="editMeal()">Edit</button>
+      <button mat-raised-button color="warn" (click)="deleteMeal()">Delete</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
