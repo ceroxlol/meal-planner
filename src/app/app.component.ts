@@ -11,7 +11,7 @@ import { Meal } from './meal.model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { EditMealDialogComponent } from './components/edit-meal-dialog/edit-meal-dialog.component';
+import { MealDialogComponent } from './components/meal-dialog/meal-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -41,12 +41,12 @@ export class AppComponent {
   }
 
   addMeal(): void {
-    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+    const dialogRef = this.dialog.open(MealDialogComponent, {
       width: '250px',
-      data: { meal: {}, title: 'Add Meal' }
+      data: { meal: {}, title: 'Add Meal' },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // Handle the result from the dialog here
         console.log('The dialog was closed with result:', result);
@@ -55,15 +55,13 @@ export class AppComponent {
   }
 
   editMeal(meal: Meal): void {
-    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+    const dialogRef = this.dialog.open(MealDialogComponent, {
       width: '250px',
-      data: { meal, title: 'Edit Meal' }
+      data: { meal, title: 'Edit Meal' },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Handle the result from the dialog here
-        console.log('The dialog was closed with result:', result);
+    dialogRef.afterClosed().subscribe((meal) => {
+      if (meal) {
       }
     });
   }
