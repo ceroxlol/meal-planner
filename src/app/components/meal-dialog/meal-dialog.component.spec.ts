@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditMealDialogComponent } from './edit-meal-dialog.component';
+import { MealDialogComponent } from './meal-dialog.component';
 
-describe('EditMealDialogComponent', () => {
-  let component: EditMealDialogComponent;
-  let fixture: ComponentFixture<EditMealDialogComponent>;
+describe('MealDialogComponent', () => {
+  let component: MealDialogComponent;
+  let fixture: ComponentFixture<MealDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditMealDialogComponent]
+      imports: [MealDialogComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditMealDialogComponent);
+    fixture = TestBed.createComponent(MealDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

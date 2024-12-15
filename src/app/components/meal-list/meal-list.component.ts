@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Meal } from '../../meal.model';
 
 import { MatListModule } from '@angular/material/list';
@@ -14,13 +14,21 @@ import { MealService } from '../../services/meal.service';
   imports: [MatListModule, CommonModule, MatCardModule],
 })
 export class MealListComponent {
-  meals: Meal[] = [];
+  @Input() meals: Meal[] = [];
 
   @Output() mealSelected = new EventEmitter<Meal>();
 
   constructor(private mealService: MealService) {}
 
   ngOnInit(): void {
+    this.getMeals();
+  }
+
+  ngOnchanges(): void {
+    this.getMeals();
+  }
+
+  getMeals(): void {
     this.mealService.getMeals().subscribe((meals) => {
       this.meals = meals;
     });

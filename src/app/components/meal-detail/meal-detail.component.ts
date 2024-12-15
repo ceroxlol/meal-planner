@@ -5,17 +5,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MealService } from '../../services/meal.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EditMealDialogComponent } from '../edit-meal-dialog/edit-meal-dialog.component';
+import { EditMealDialogComponent } from '../meal-dialog/meal-dialog.component';
 
 @Component({
   selector: 'app-meal-detail',
   templateUrl: './meal-detail.component.html',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatListModule
-  ]
+  imports: [CommonModule, MatCardModule, MatListModule],
 })
 export class MealDetailComponent {
   @Input() meal: Meal | null = null;
@@ -26,7 +22,7 @@ export class MealDetailComponent {
   editMeal(): void {
     const dialogRef = this.dialog.open(EditMealDialogComponent, {
       width: '400px',
-      data: { meal: { ...this.meal } } // Pass a copy of the meal object
+      data: { meal: { ...this.meal } }, // Pass a copy of the meal object
     });
 
     dialogRef.afterClosed().subscribe((updatedMeal: Meal) => {

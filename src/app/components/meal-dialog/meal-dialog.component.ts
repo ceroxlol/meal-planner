@@ -9,9 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MealService } from '../../services/meal.service';
 
 @Component({
-  selector: 'app-edit-meal-dialog',
-  templateUrl: './edit-meal-dialog.component.html',
-  styleUrl: './edit-meal-dialog.component.css',
+  selector: 'app-meal-dialog',
+  templateUrl: './meal-dialog.component.html',
+  styleUrl: './meal-dialog.component.css',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -21,12 +21,12 @@ import { MealService } from '../../services/meal.service';
     MatInputModule,
   ],
 })
-export class EditMealDialogComponent {
+export class MealDialogComponent {
   @Input() title: string | null = null;
   newIngredient = '';
 
   constructor(
-    public dialogRef: MatDialogRef<EditMealDialogComponent>,
+    public dialogRef: MatDialogRef<MealDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { meal: Meal },
     private mealService: MealService
   ) {}
@@ -36,8 +36,8 @@ export class EditMealDialogComponent {
   }
 
   onSave(): void {
-    this.mealService.addMeal(this.data.meal).subscribe(() => {
-      this.dialogRef.close(this.data.meal); // Return the updated meal
+    this.mealService.updateMeal(this.data.meal).subscribe((updatedMeal: Meal) => {
+      this.dialogRef.close(updatedMeal); // Return the updated meal
     });
   }
 
