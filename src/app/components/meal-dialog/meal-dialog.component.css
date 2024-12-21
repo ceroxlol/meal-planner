@@ -49,6 +49,11 @@
   color: white;
 }
 
+.dialog-actions button.delete {
+  background-color: #f44336;
+  color: white;
+}
+
 .dialog-actions button:hover {
   opacity: 0.8;
 }
