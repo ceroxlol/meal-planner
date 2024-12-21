@@ -23,7 +23,6 @@ import { MealService } from '../../services/meal.service';
 })
 export class MealDialogComponent {
   componentTitle: string = 'Add Meal';
-  @Input() refreshTrigger = false;
   newIngredient = '';
 
   constructor(
@@ -31,7 +30,7 @@ export class MealDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: { meal: Meal },
     private mealService: MealService
   ) {
-    if (this.data.meal.id) {
+    if (this.data.meal.title) {
       this.componentTitle = 'Edit Meal';
     }
   }

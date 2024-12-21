@@ -38,7 +38,7 @@ export class AppComponent {
   constructor(private dialog: MatDialog) {}
 
   onMealSelected(meal: Meal): void {
-    this.selectedMeal = meal;
+    this.openMealDialog(meal);
   }
 
   openMealDialog(meal: Meal = {} as Meal): void {
