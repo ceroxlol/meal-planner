@@ -54,7 +54,9 @@ export class MealDialogComponent {
   }
 
   onDelete(): void {
-    this.dialogRef.close({ delete: true, meal: this.data.meal }); // Return the delete action
+    this.mealService.deleteMeal(this.data.meal.id).subscribe(() => {
+      this.dialogRef.close({ delete: true, meal: this.data.meal }); // Return the delete action
+    });
   }
 
   addIngredient(): void {
