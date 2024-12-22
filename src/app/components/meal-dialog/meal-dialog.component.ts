@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MealService } from '../../services/meal.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-meal-dialog',
@@ -19,6 +20,7 @@ import { MealService } from '../../services/meal.service';
     FormsModule,
     MatChipsModule,
     MatInputModule,
+    MatIconModule
   ],
 })
 export class MealDialogComponent {
@@ -69,6 +71,7 @@ export class MealDialogComponent {
     }
   }
 
+  // TODO only remove on save
   removeIngredient(index: number): void {
     this.data.meal.ingredients.splice(index, 1);
   }
