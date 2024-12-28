@@ -38,6 +38,25 @@
       step="1"
     ></mat-slider>-->
 
+    <mat-form-field appearance="fill">
+      <mat-label>Image URL</mat-label>
+      <input
+        matInput
+        [(ngModel)]="imageUrl"
+        (change)="onImageUrlChange($event)"
+        placeholder="Enter image URL"
+        name="imageUrl"
+      />
+    </mat-form-field>
+
+    <div *ngIf="data.meal.imageUrl">
+      <img
+        [src]="data.meal.imageUrl"
+        alt="Meal Image"
+        style="max-width: 100%; margin-top: 10px"
+      />
+    </div>
+
     <!-- Ingredients Input Field -->
     <mat-form-field appearance="fill">
       <mat-label>Add Ingredient</mat-label>

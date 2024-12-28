@@ -4,7 +4,7 @@ import { Meal } from '../meal.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MealService {
   private apiUrl = 'http://localhost:3000/api/meals';
@@ -13,54 +13,21 @@ export class MealService {
     {
       id: 0,
       title: 'Spaghetti Bolognese',
-      ingredients: ['Spaghetti' , 'Tomato Sauce', 'Ground Beef' ],
+      ingredients: ['Spaghetti', 'Tomato Sauce', 'Ground Beef'],
       timeToCook: 45,
       effortLevel: 3,
-      imageUrl: 'spaghettiBolognese.webp'
+      imageUrl: 'spaghettiBolognese.webp',
     },
     {
       id: 1,
       title: 'Caesar Salad',
-      ingredients: ['Lettuce','Croutons','Caesar Dressing' ],
+      ingredients: ['Lettuce', 'Croutons', 'Caesar Dressing'],
       timeToCook: 20,
       effortLevel: 1,
-      imageUrl: 'caesarSalad.webp'
+      imageUrl: 'caesarSalad.webp',
     },
-    {
-      id: 0,
-      title: 'Spaghetti Bolognese',
-      ingredients: ['Spaghetti' , 'Tomato Sauce', 'Ground Beef' ],
-      timeToCook: 45,
-      effortLevel: 3,
-      imageUrl: 'spaghettiBolognese.webp'
-    },
-    {
-      id: 1,
-      title: 'Caesar Salad',
-      ingredients: ['Lettuce','Croutons','Caesar Dressing' ],
-      timeToCook: 20,
-      effortLevel: 1,
-      imageUrl: 'caesarSalad.webp'
-    },
-    {
-      id: 0,
-      title: 'Spaghetti Bolognese',
-      ingredients: ['Spaghetti' , 'Tomato Sauce', 'Ground Beef' ],
-      timeToCook: 45,
-      effortLevel: 3,
-      imageUrl: 'spaghettiBolognese.webp'
-    },
-    {
-      id: 1,
-      title: 'Caesar Salad',
-      ingredients: ['Lettuce','Croutons','Caesar Dressing' ],
-      timeToCook: 20,
-      effortLevel: 1,
-      imageUrl: 'caesarSalad.webp'
-    }
-    // Add more meals as needed
   ];
-  
+
   private dailyMeal: Meal | null = null;
 
   constructor(private http: HttpClient) {}

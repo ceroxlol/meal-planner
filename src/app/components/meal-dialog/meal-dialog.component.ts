@@ -8,6 +8,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MealService } from '../../services/meal.service';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-meal-dialog',
@@ -20,12 +24,19 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     MatChipsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
   ],
 })
 export class MealDialogComponent {
   componentTitle: string = 'Add Meal';
   newIngredient = '';
+  imageUrl: string = '';
+  imageFile: File | null = null;
+  isUploading: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<MealDialogComponent>,
@@ -74,5 +85,40 @@ export class MealDialogComponent {
   // TODO only remove on save
   removeIngredient(index: number): void {
     this.data.meal.ingredients.splice(index, 1);
+  }
+
+  onImageUrlChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input && input.value) {
+      this.imageUrl = input.value;
+      this.data.meal.imageUrl = this.imageUrl;
+    }
+  }
+
+  onImageUpload(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input && input.files && input.files.length > 0) {
+      this.imageFile = input.files[0];
+      this.uploadImage();
+    }
+  }
+
+  uploadImage(): void {
+    if (this.imageFile) {
+      this.isUploading = true;
+      const formData = new FormData();
+      formData.append('file', this.imageFile);
+      // Assuming you have an endpoint to handle image uploads
+      this.mealService.uploadImage(formData).subscribe(
+        (response: any) => {
+          this.isUploading = false;
+          this.data.meal.imageUrl = response.imageUrl;
+        },
+        (error) => {
+          this.isUploading = false;
+          console.error('Image upload failed', error);
+        }
+      );
+    }
   }
 }
