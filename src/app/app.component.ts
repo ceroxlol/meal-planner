@@ -33,13 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  selectedMeal: Meal | null = null;
-  refreshMeals = false;
+  refreshMealList = false;
   constructor(private dialog: MatDialog) {}
-
-  onMealSelected(meal: Meal): void {
-    this.openMealDialog(meal);
-  }
 
   openMealDialog(meal: Meal = {} as Meal): void {
     const dialogRef = this.dialog.open(MealDialogComponent, {
@@ -49,22 +44,8 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.refreshMeals = !this.refreshMeals;
+        this.refreshMealList = !this.refreshMealList;
       }
     });
-  }
-
-  upsertMeal(meal: Meal): void {
-    /*
-    if (meal.id) {
-      this.updateMeal(meal);
-    } else {
-      this.addMeal(meal);
-    }
-      */
-  }
-
-  clearSelectedMeal(): void {
-    this.selectedMeal = null;
   }
 }
