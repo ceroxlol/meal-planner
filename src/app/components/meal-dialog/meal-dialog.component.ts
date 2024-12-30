@@ -53,7 +53,7 @@ export class MealDialogComponent {
   }
 
   onSave(): void {
-    if (!this.data.meal.id) {
+    if (this.data.meal.id === null || this.data.meal.id === undefined) {
       this.mealService.addMeal(this.data.meal).subscribe((newMeal: Meal) => {
         this.dialogRef.close(newMeal); // Return the new meal
       });
@@ -90,35 +90,7 @@ export class MealDialogComponent {
   onImageUrlChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input && input.value) {
-      this.imageUrl = input.value;
-      this.data.meal.imageUrl = this.imageUrl;
-    }
-  }
-
-  onImageUpload(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input && input.files && input.files.length > 0) {
-      this.imageFile = input.files[0];
-      this.uploadImage();
-    }
-  }
-
-  uploadImage(): void {
-    if (this.imageFile) {
-      this.isUploading = true;
-      const formData = new FormData();
-      formData.append('file', this.imageFile);
-      // Assuming you have an endpoint to handle image uploads
-      this.mealService.uploadImage(formData).subscribe(
-        (response: any) => {
-          this.isUploading = false;
-          this.data.meal.imageUrl = response.imageUrl;
-        },
-        (error) => {
-          this.isUploading = false;
-          console.error('Image upload failed', error);
-        }
-      );
+      this.data.meal.imageUrl = input.value;
     }
   }
 }
