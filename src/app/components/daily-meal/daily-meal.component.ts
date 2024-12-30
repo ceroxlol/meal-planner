@@ -12,19 +12,17 @@ import { MealService } from '../../services/meal.service';
   styleUrls: ['./daily-meal.component.css'],
 })
 export class DailyMealComponent {
-  meal: Meal | null = null;
+  dailyMeal: Meal | null = null;
 
   @Output() dailyMealSelected = new EventEmitter<Meal>();
 
   constructor(private mealService: MealService) {}
 
   openDailyMeal(): void {
-    if (this.meal) this.dailyMealSelected.emit(this.meal);
+    if (this.dailyMeal) this.dailyMealSelected.emit(this.dailyMeal);
   }
 
   ngOnInit(): void {
-    // Automatically set a random daily meal if none is set
-    this.mealService.setRandomDailyMealIfNone();
-    this.meal = this.mealService.getDailyMeal();
+    this.dailyMeal = this.mealService.getDailyMeal();
   }
 }
