@@ -26,9 +26,7 @@ export class MealListComponent {
   }
 
   ngOnChanges(): void {
-    if (this.refreshTrigger) {
       this.getMeals();
-    }
   }
 
   getMeals(): void {

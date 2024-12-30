@@ -1,5 +1,5 @@
 export interface Meal {
-  id: number;
+  _id: string;
   title: string;
   ingredients: string[];
   timeToCook: number; // in minutes

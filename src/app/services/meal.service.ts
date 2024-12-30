@@ -24,10 +24,10 @@ export class MealService {
   }
 
   updateMeal(meal: Meal): Observable<Meal> {
-    return this.http.put<Meal>(`${this.apiUrl}/${meal.id}`, meal);
+    return this.http.put<Meal>(`${this.apiUrl}/${meal._id}`, meal);
   }
 
-  deleteMeal(id: number): Observable<void> {
+  deleteMeal(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 

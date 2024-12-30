@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-meal-dialog',
@@ -28,7 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    HttpClientModule,
   ],
 })
 export class MealDialogComponent {
@@ -53,7 +51,7 @@ export class MealDialogComponent {
   }
 
   onSave(): void {
-    if (this.data.meal.id === null || this.data.meal.id === undefined) {
+    if (this.data.meal._id === null || this.data.meal._id === undefined) {
       this.mealService.addMeal(this.data.meal).subscribe((newMeal: Meal) => {
         this.dialogRef.close(newMeal); // Return the new meal
       });
@@ -67,7 +65,7 @@ export class MealDialogComponent {
   }
 
   onDelete(): void {
-    this.mealService.deleteMeal(this.data.meal.id).subscribe(() => {
+    this.mealService.deleteMeal(this.data.meal._id).subscribe(() => {
       this.dialogRef.close({ delete: true, meal: this.data.meal }); // Return the delete action
     });
   }
