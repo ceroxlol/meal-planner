@@ -5,6 +5,12 @@
       <h3>{{ meal.title }}</h3>
       <p>Cooking Time: {{ meal.timeToCook }} minutes</p>
       <p>Effort Level: {{ meal.effortLevel }}/5</p>
+      <div class="ingredients">
+        <h4>Ingredients:</h4>
+        <ul>
+          <li *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</li>
+        </ul>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
