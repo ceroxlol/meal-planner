@@ -11,7 +11,7 @@
 }
 
 .daily-meal-container app-daily-meal {
-  width: 50%; /* Adjust width as needed */
+  width: 25%; /* Adjust width as needed */
   max-width: 600px;
 }
 

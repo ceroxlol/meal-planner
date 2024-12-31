@@ -1,6 +1,10 @@
 <div class="meal-list">
-  <mat-card *ngFor="let meal of filteredMeals" (click)="selectMeal(meal)" class="meal-card">
-    <img [src]="meal.imageUrl" alt="{{ meal.title }}" class="meal-image">
+  <mat-card
+    *ngFor="let meal of filteredMeals"
+    (click)="selectMeal(meal)"
+    class="meal-card"
+  >
+    <img [src]="meal.imageUrl" alt="No image" class="meal-image" />
     <mat-card-content>
       <h3>{{ meal.title }}</h3>
       <p>Cooking Time: {{ meal.timeToCook }} minutes</p>
