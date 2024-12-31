@@ -14,6 +14,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MealDialogComponent } from './components/meal-dialog/meal-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatIconModule,
     CommonModule,
     SearchBarComponent,
+    MatButtonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
