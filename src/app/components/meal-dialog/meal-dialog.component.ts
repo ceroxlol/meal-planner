@@ -65,9 +65,11 @@ export class MealDialogComponent {
   }
 
   onDelete(): void {
-    this.mealService.deleteMeal(this.data.meal._id).subscribe(() => {
-      this.dialogRef.close({ delete: true, meal: this.data.meal }); // Return the delete action
-    });
+    if (confirm('Are you sure you want to delete this meal?')) {
+      this.mealService.deleteMeal(this.data.meal._id).subscribe(() => {
+        this.dialogRef.close({ delete: true, meal: this.data.meal }); // Return the delete action
+      });
+    }
   }
 
   addIngredient(): void {
