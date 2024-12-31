@@ -1,5 +1,10 @@
 <mat-toolbar color="primary">
-  <span style="margin: 0 auto">meal-planner</span>
+  <span>meal-planner</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" class="add-meal-button" (click)="openMealDialog()">
+    <mat-icon>add</mat-icon>
+    Add Meal
+  </button>
 </mat-toolbar>
 
 <div class="container">
@@ -11,7 +16,9 @@
   </div>
 
   <!-- Search Bar -->
-  <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  <div class="search-bar-container">
+    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  </div>
 
   <!-- Meal List with Padding -->
   <div class="meal-list-container">
@@ -20,8 +27,5 @@
       [refreshTrigger]="refreshMealList"
       [searchTerm]="searchTerm"
     ></app-meal-list>
-    <button mat-fab color="primary" (click)="openMealDialog()">
-      <mat-icon>add</mat-icon>
-    </button>
   </div>
 </div>
