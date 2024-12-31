@@ -1,4 +1,11 @@
 <div class="daily-meal" (click)="openDailyMeal()">
-  <img class="daily-meal-image" [src]="dailyMeal?.imageUrl" alt="No Image available :(" />
+  <img
+    class="daily-meal-image"
+    [src]="dailyMeal?.imageUrl"
+    alt="No Image available :("
+  />
   <span>{{ dailyMeal?.title || "No Meal Available" }}</span>
+  <button mat-icon-button (click)="resetDailyMeal($event)" class="reset-button">
+    <mat-icon>autorenew</mat-icon>
+  </button>
 </div>

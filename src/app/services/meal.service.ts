@@ -30,4 +30,8 @@ export class MealService {
   getDailyMeal(): Observable<Meal> {
     return this.http.get<Meal>(`${this.apiUrl}/daily`);
   }
+
+  resetDailyMeal(): Observable<Meal> {
+    return this.http.post<Meal>(`${this.apiUrl}/daily/reset`, {});
+  }
 }

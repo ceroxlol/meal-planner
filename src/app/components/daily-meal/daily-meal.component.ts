@@ -27,4 +27,11 @@ export class DailyMealComponent {
       this.dailyMeal = meal;
     });
   }
+
+  resetDailyMeal(event: Event): void {
+    event.stopPropagation();
+    this.mealService.resetDailyMeal().subscribe((meal) => {
+      this.dailyMeal = meal;
+    });
+  }
 }
