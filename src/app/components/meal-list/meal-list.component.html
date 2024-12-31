@@ -7,8 +7,13 @@
     <img [src]="meal.imageUrl" alt="No image" class="meal-image" />
     <mat-card-content>
       <h3>{{ meal.title }}</h3>
-      <p>Cooking Time: {{ meal.timeToCook }} minutes</p>
-      <p>Effort Level: {{ meal.effortLevel }}/5</p>
+      <div class="meal-details">
+        <span class="detail-label">Cooking Time:</span>
+        {{ meal.cookingTime }} minutes
+      </div>
+      <div class="meal-details">
+        <span class="detail-label">Effort Level:</span> {{ meal.effortLevel }}/5
+      </div>
       <div class="ingredients">
         <h4>Ingredients:</h4>
         <ul>
