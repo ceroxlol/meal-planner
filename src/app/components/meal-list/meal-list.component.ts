@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Meal } from '../../meal.model';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
@@ -38,14 +45,18 @@ export class MealListComponent implements OnChanges {
   getMeals(): void {
     this.mealService.getMeals().subscribe((meals) => {
       this.meals = meals;
+      this.filterMeals();
     });
   }
 
   filterMeals(): void {
     const term = this.searchTerm.toLowerCase();
-    this.filteredMeals = this.meals.filter(meal =>
-      meal.title.toLowerCase().includes(term) ||
-      meal.ingredients.some(ingredient => ingredient.toLowerCase().includes(term))
+    this.filteredMeals = this.meals.filter(
+      (meal) =>
+        meal.title.toLowerCase().includes(term) ||
+        meal.ingredients.some((ingredient) =>
+          ingredient.toLowerCase().includes(term)
+        )
     );
   }
 
