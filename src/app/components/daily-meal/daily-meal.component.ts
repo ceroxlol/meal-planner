@@ -23,6 +23,8 @@ export class DailyMealComponent {
   }
 
   ngOnInit(): void {
-    this.dailyMeal = this.mealService.getDailyMeal();
+    this.mealService.getDailyMeal().subscribe((meal) => {
+      this.dailyMeal = meal;
+    });
   }
 }
