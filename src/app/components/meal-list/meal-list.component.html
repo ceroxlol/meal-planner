@@ -1,9 +1,9 @@
 <div class="meal-list">
-  <mat-card *ngFor="let meal of meals" (click)="selectMeal(meal)" class="meal-card">
+  <mat-card *ngFor="let meal of filteredMeals" (click)="selectMeal(meal)" class="meal-card">
     <img [src]="meal.imageUrl" alt="{{ meal.title }}" class="meal-image">
     <mat-card-content>
       <h3>{{ meal.title }}</h3>
-      <p>Time to Cook: {{ meal.timeToCook }} minutes</p>
+      <p>Cooking Time: {{ meal.timeToCook }} minutes</p>
       <p>Effort Level: {{ meal.effortLevel }}/5</p>
     </mat-card-content>
   </mat-card>

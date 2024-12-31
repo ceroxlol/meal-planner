@@ -1,0 +1,9 @@
+<mat-form-field appearance="fill" class="search-bar">
+  <mat-label>Search Meals</mat-label>
+  <input
+    matInput
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearchChange()"
+    placeholder="Search by name or ingredient"
+  />
+</mat-form-field>

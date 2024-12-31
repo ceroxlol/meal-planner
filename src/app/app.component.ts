@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MealDialogComponent } from './components/meal-dialog/meal-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -28,12 +29,15 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatIconModule,
     CommonModule,
+    SearchBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   refreshMealList = false;
+  searchTerm: string = '';
+
   constructor(private dialog: MatDialog) {}
 
   openMealDialog(meal: Meal = {} as Meal): void {
@@ -47,5 +51,9 @@ export class AppComponent {
         this.refreshMealList = !this.refreshMealList;
       }
     });
+  }
+
+  onSearch(term: string): void {
+    this.searchTerm = term;
   }
 }
