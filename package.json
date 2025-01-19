@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:meal-planner": "node dist/meal-planner/server/server.mjs"
+    "serve:ssr:meal-planner": "node dist/meal-planner/server/server.mjs",
+    "docker-build": "docker buildx build --platform linux/amd64,linux/arm64 -t ceroxlol/meal-planner:latest . --push",
+    "docker-push": "docker push ceroxlol/meal-planner:latest"
   },
   "private": true,
   "dependencies": {
