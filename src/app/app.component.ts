@@ -15,6 +15,8 @@ import { MealDialogComponent } from './components/meal-dialog/meal-dialog.compon
 import { MatIconModule } from '@angular/material/icon';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {MatButtonModule} from '@angular/material/button';
+import { env } from 'process';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
