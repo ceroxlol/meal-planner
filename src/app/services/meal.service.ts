@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Meal } from '../meal.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { ENVIRONMENT, Environment } from '../environment.token';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,10 @@ export class MealService {
   //private apiUrl = 'http://localhost:3000/api/meals';
   private backendUrl = `${environment.backendUrl}/meals`;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(ENVIRONMENT) private env: Environment
+  ) {}
 
   getMeals(): Observable<Meal[]> {
     return this.http.get<Meal[]>(this.backendUrl);

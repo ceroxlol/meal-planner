@@ -1,3 +1,4 @@
 export const environment = {
-    backendUrl: process.env["BACKEND_URL"] || 'http://localhost:3000/api'
-  };
+  production: false,
+  backendUrl: 'http://localhost:3000/api'
+};

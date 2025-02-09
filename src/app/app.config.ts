@@ -9,6 +9,9 @@ import {
   withFetch,
   withInterceptorsFromDi,
 } from '@angular/common/http';
+import { provideServerRendering } from '@angular/platform-server';
+import { environment } from '../environments/environment';
+import { ENVIRONMENT } from './environment.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
+    provideServerRendering(),
+    { provide: ENVIRONMENT, useValue: environment }
   ],
 };
