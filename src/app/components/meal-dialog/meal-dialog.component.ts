@@ -58,13 +58,13 @@ export class MealDialogComponent {
   onSave(): void {
     if (this.data.meal._id === null || this.data.meal._id === undefined) {
       this.mealService.addMeal(this.data.meal).subscribe((newMeal: Meal) => {
-        this.dialogRef.close(newMeal); // Return the new meal
+        this.dialogRef.close(newMeal);
       });
     } else {
       this.mealService
         .updateMeal(this.data.meal)
         .subscribe((updatedMeal: Meal) => {
-          this.dialogRef.close(updatedMeal); // Return the updated meal
+          this.dialogRef.close(updatedMeal);
         });
     }
   }
@@ -72,7 +72,7 @@ export class MealDialogComponent {
   onDelete(): void {
     if (confirm('Are you sure you want to delete this meal?')) {
       this.mealService.deleteMeal(this.data.meal._id).subscribe(() => {
-        this.dialogRef.close({ delete: true, meal: this.data.meal }); // Return the delete action
+        this.dialogRef.close({ delete: true, meal: this.data.meal });
       });
     }
   }
@@ -87,7 +87,7 @@ export class MealDialogComponent {
     }
   }
 
-  // TODO only remove on save
+  //TODO only remove on save
   removeIngredient(index: number): void {
     this.data.meal.ingredients.splice(index, 1);
   }
@@ -99,8 +99,11 @@ export class MealDialogComponent {
     }
   }
 
-  // Add this method to your component class:
   updateEffortLevel(level: number): void {
     this.data.meal.effortLevel = level;
+  }
+
+  handleImageError(event: any): void {
+    event.target.src = 'assets/mealNotFound.png';
   }
 }

@@ -46,7 +46,9 @@ export class AppComponent {
 
   openMealDialog(meal: Meal = {} as Meal): void {
     const dialogRef = this.dialog.open(MealDialogComponent, {
-      width: '400px',
+      width: '900px',
+      maxWidth: '90vw',
+      maxHeight: '90vh',
       data: { meal },
     });
 

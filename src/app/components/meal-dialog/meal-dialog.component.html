@@ -1,23 +1,19 @@
 <h2 mat-dialog-title class="dialog-header">
   {{ componentTitle }}
-  <button
-    mat-icon-button
-    class="close-button"
-    (click)="onCancel()"
-    style="float: right"
-  >
+  <button mat-icon-button class="close-button" (click)="onCancel()">
     <mat-icon>close</mat-icon>
   </button>
 </h2>
+
 <div mat-dialog-content class="dialog-content">
-  <form>
-    <!-- Meal Title -->
+  <!-- Left Column -->
+  <div class="left-column">
+    <!-- Basic Information -->
     <mat-form-field appearance="fill">
       <mat-label>Meal Title</mat-label>
-      <input matInput [(ngModel)]="data.meal.title" name="title" />
+      <input matInput [(ngModel)]="data.meal.title" name="title" required />
     </mat-form-field>
 
-    <!-- Cooking Time -->
     <mat-form-field appearance="fill">
       <mat-label>Cooking Time (minutes)</mat-label>
       <input
@@ -25,10 +21,11 @@
         type="number"
         [(ngModel)]="data.meal.cookingTime"
         name="cookingTime"
+        required
+        min="1"
       />
     </mat-form-field>
 
-    <!-- Replace the existing effort level slider with: -->
     <div class="effort-field">
       <mat-label>Effort Level</mat-label>
       <app-effort-level
@@ -39,6 +36,38 @@
       ></app-effort-level>
     </div>
 
+    <!-- Ingredients Section -->
+    <div class="ingredients-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Add Ingredient</mat-label>
+        <input
+          matInput
+          [(ngModel)]="newIngredient"
+          (keyup.enter)="addIngredient()"
+          placeholder="Type and press enter"
+          name="Ingredients"
+        />
+        <button mat-icon-button matSuffix (click)="addIngredient()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-chip-listbox aria-label="Ingredients list">
+        <mat-chip
+          *ngFor="let ingredient of data.meal.ingredients; let i = index"
+          (removed)="removeIngredient(i)"
+        >
+          {{ ingredient }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </mat-chip-listbox>
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-column">
     <mat-form-field appearance="fill">
       <mat-label>Image URL</mat-label>
       <input
@@ -48,53 +77,33 @@
         placeholder="Enter image URL"
         name="imageUrl"
       />
+      <mat-icon matSuffix>image</mat-icon>
     </mat-form-field>
 
-    <div *ngIf="data.meal.imageUrl">
+    <div class="image-preview" *ngIf="data.meal.imageUrl">
       <img
-        [src]="data.meal.imageUrl"
+        [src]="data.meal.imageUrl || 'mealNotFound.png'"
         alt="Meal Image"
-        style="max-width: 100%; margin-top: 10px"
+        (error)="handleImageError($event)"
       />
     </div>
-
-    <!-- Ingredients Input Field -->
-    <mat-form-field appearance="fill">
-      <mat-label>Add Ingredient</mat-label>
-      <input
-        matInput
-        [(ngModel)]="newIngredient"
-        (keyup.enter)="addIngredient()"
-        placeholder="Type and press enter"
-        name="Ingredients"
-      />
-    </mat-form-field>
-
-    <!-- Ingredients Chip List -->
-    <mat-chip-listbox>
-      <mat-chip
-        *ngFor="let ingredient of data.meal.ingredients; let i = index"
-        (click)="removeIngredient(i)"
-        (removed)="removeIngredient(i)"
-      >
-        {{ ingredient }}
-      </mat-chip>
-    </mat-chip-listbox>
-  </form>
+  </div>
 </div>
 
-<!-- Dialog Actions -->
 <div mat-dialog-actions class="dialog-actions">
   <button
     mat-button
     class="delete"
-    *ngIf="data.meal.title"
+    *ngIf="data.meal._id"
     (click)="onDelete()"
     style="margin-right: auto"
   >
+    <mat-icon>delete</mat-icon>
     Delete
   </button>
-  <button mat-button class="save" color="primary" (click)="onSave()">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">
+    <mat-icon>save</mat-icon>
     Save
   </button>
 </div>
