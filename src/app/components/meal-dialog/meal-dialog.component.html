@@ -80,9 +80,9 @@
       <mat-icon matSuffix>image</mat-icon>
     </mat-form-field>
 
-    <div class="image-preview" *ngIf="data.meal.imageUrl">
+    <div class="image-preview">
       <img
-        [src]="data.meal.imageUrl || 'mealNotFound.png'"
+        [src]="data.meal.imageUrl"
         alt="Meal Image"
         (error)="handleImageError($event)"
       />

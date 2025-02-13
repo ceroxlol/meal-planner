@@ -64,4 +64,8 @@ export class MealListComponent implements OnChanges {
   selectMeal(meal: Meal): void {
     this.mealSelected.emit(meal);
   }
+
+  handleImageError(event: any): void {
+    event.target.src = 'mealNotFound.png';
+  }
 }

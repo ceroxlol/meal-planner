@@ -104,6 +104,6 @@ export class MealDialogComponent {
   }
 
   handleImageError(event: any): void {
-    event.target.src = 'assets/mealNotFound.png';
+    event.target.src = 'mealNotFound.png';
   }
 }

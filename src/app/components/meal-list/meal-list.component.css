@@ -1,75 +1,113 @@
-/* Container for the meal list to centralize and constrain the width */
 .meal-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 24px;
 }
 
-/* Each meal card */
 .meal-card {
-  width: 300px;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
 }
 
-/* Hover effect for better interactivity */
 .meal-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Image styling */
-.meal-image {
+.card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.image-column {
   width: 100%;
   height: 200px;
+  overflow: hidden;
+}
+
+.meal-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px 8px 0 0; /* Rounded corners for the top of the card */
+  border-radius: 4px;
 }
 
-/* Card content styling */
-mat-card-content {
-  text-align: center;
+.details-column {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-/* Title styling to ensure proper spacing and no overflow */
-h3 {
-  margin: 0;
-  font-size: 1.5em;
-  color: #3f51b5; /* Primary color */
+.meal-title {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
 }
 
-/* Meal details styling */
+.meal-info {
+  margin-bottom: 16px;
+}
+
 .meal-details {
-  text-align: left;
-  margin: 8px 0;
-  font-size: 1em;
-  color: #757575; /* Secondary color */
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
 }
 
 .detail-label {
-  font-size: 1.2em;
-  color: #3f51b5; /* Primary color */
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  min-width: 100px;
 }
 
-/* Ingredients list styling */
+.detail-value {
+  color: rgba(0, 0, 0, 0.87);
+}
+
 .ingredients {
-  text-align: left;
   margin-top: 16px;
+  overflow: hidden;
 }
 
 .ingredients h4 {
   margin: 0 0 8px 0;
-  font-size: 1.2em;
-  color: #3f51b5; /* Primary color */
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .ingredients ul {
-  padding-left: 20px;
   margin: 0;
+  padding-left: 20px;
+  color: rgba(0, 0, 0, 0.87);
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .ingredients li {
-  font-size: 1em;
-  color: #757575; /* Secondary color */
+  margin-bottom: 4px;
+}
+
+/* Webkit scrollbar styling */
+.ingredients ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ingredients ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.ingredients ul::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.ingredients ul::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

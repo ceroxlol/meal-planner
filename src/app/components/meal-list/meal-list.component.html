@@ -1,30 +1,37 @@
 <div class="meal-list">
-  <mat-card
-    *ngFor="let meal of filteredMeals"
-    (click)="selectMeal(meal)"
-    class="meal-card"
-  >
-    <img [src]="meal.imageUrl" alt="No image" class="meal-image" />
-    <mat-card-content>
-      <h3>{{ meal.title }}</h3>
-      <div class="meal-details">
-        <span class="detail-label">Cooking Time:</span>
-        {{ meal.cookingTime }} minutes
+  <mat-card *ngFor="let meal of filteredMeals" (click)="selectMeal(meal)" class="meal-card">
+    <div class="card-content">
+      <div class="image-column">
+        <img [src]="meal.imageUrl" alt="No image" class="meal-image" (error)="handleImageError($event)" />
       </div>
-      <div class="meal-details">
-        <span class="detail-label">Effort Level:</span>
-        <app-effort-level
-          [level]="meal.effortLevel"
-          [editable]="false"
-          size="medium"
-        ></app-effort-level>
+      <div class="details-column">
+        <mat-card-content>
+          <h3 class="meal-title">{{ meal.title }}</h3>
+          
+          <div class="meal-info">
+            <div class="meal-details">
+              <span class="detail-label">Cooking Time:</span>
+              <span class="detail-value">{{ meal.cookingTime }} minutes</span>
+            </div>
+            
+            <div class="meal-details">
+              <span class="detail-label">Effort Level:</span>
+              <app-effort-level
+                [level]="meal.effortLevel"
+                [editable]="false"
+                size="medium"
+              ></app-effort-level>
+            </div>
+          </div>
+
+          <div class="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</li>
+            </ul>
+          </div>
+        </mat-card-content>
       </div>
-      <div class="ingredients">
-        <h4>Ingredients:</h4>
-        <ul>
-          <li *ngFor="let ingredient of meal.ingredients">{{ ingredient }}</li>
-        </ul>
-      </div>
-    </mat-card-content>
+    </div>
   </mat-card>
 </div>
