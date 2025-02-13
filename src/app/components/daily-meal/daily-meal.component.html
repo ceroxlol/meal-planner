@@ -1,11 +1,28 @@
-<div class="daily-meal" (click)="openDailyMeal()">
-  <img
-    class="daily-meal-image"
-    [src]="dailyMeal?.imageUrl"
-    alt="No Image available :("
-  />
-  <span>{{ dailyMeal?.title || "No Meal Available" }}</span>
-  <button mat-icon-button (click)="resetDailyMeal($event)" class="reset-button">
-    <mat-icon>autorenew</mat-icon>
-  </button>
-</div>
+<mat-card class="daily-meal" (click)="openDailyMeal()">
+  <div class="daily-meal-content">
+    <div class="header">
+      <h2>Today we're cooking:</h2>
+      <button mat-icon-button (click)="resetDailyMeal($event)" class="reset-button" matTooltip="I want to eat something else...">
+        <mat-icon>autorenew</mat-icon>
+      </button>
+    </div>
+    
+    <div *ngIf="dailyMeal; else noMeal" class="meal-content">
+      <h3 class="meal-title">{{ dailyMeal.title }}</h3>
+      <img
+        class="daily-meal-image"
+        [src]="dailyMeal.imageUrl"
+        (error)="handleImageError($event)"
+        alt="Today's meal"
+      />
+    </div>
+
+    <ng-template #noMeal>
+      <div class="no-meal">
+        <mat-icon>restaurant_menu</mat-icon>
+        <h3>Nothing planned yet!</h3>
+        <p>Click the refresh button to get today's meal suggestion</p>
+      </div>
+    </ng-template>
+  </div>
+</mat-card>

@@ -3,11 +3,15 @@ import { Meal } from '../../meal.model';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MealService } from '../../services/meal.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-daily-meal',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, MatCardModule, MatTooltipModule, CommonModule, MatButtonModule],
   templateUrl: './daily-meal.component.html',
   styleUrls: ['./daily-meal.component.css'],
 })
@@ -33,5 +37,9 @@ export class DailyMealComponent {
     this.mealService.resetDailyMeal().subscribe((meal) => {
       this.dailyMeal = meal;
     });
+  }
+
+  handleImageError(event: any): void {
+    event.target.src = 'mealNotFound.png';
   }
 }
