@@ -1,5 +1,5 @@
 <h2 mat-dialog-title class="dialog-header">
-  {{ componentTitle }}
+  <span>{{ componentTitle }}</span>
   <button mat-icon-button class="close-button" (click)="onCancel()">
     <mat-icon>close</mat-icon>
   </button>
@@ -101,7 +101,6 @@
     <mat-icon>delete</mat-icon>
     Delete
   </button>
-  <button mat-button (click)="onCancel()">Cancel</button>
   <button mat-raised-button color="primary" (click)="onSave()">
     <mat-icon>save</mat-icon>
     Save
