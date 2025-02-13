@@ -1,4 +1,4 @@
 export const environment = {
-    production: true,
-    backendUrl: 'http://express:3000/api'
-  };
+  production: true,
+  backendUrl: '/api'  // This will be relative to the current domain
+};
