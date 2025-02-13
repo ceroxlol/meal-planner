@@ -1,0 +1,40 @@
+.effort-level {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  
+  .effort-level span {
+    color: #ccc;
+    transition: color 0.2s ease;
+  }
+  
+  .effort-level span.active {
+    color: #ff4081;
+  }
+  
+  .effort-level span.clickable {
+    cursor: pointer;
+  }
+  
+  .effort-level span.clickable:hover {
+    transform: scale(1.1);
+  }
+  
+  .small .mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .medium .mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .large .mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }

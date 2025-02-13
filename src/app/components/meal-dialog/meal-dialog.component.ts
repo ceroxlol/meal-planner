@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material/slider';
+import { EffortLevelComponent } from "../../shared/effort-level/effort-level.component";
 
 @Component({
   selector: 'app-meal-dialog',
@@ -30,7 +31,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatProgressSpinnerModule,
     MatSliderModule,
     ReactiveFormsModule,
-  ],
+    EffortLevelComponent
+],
 })
 export class MealDialogComponent {
   componentTitle: string = 'Add Meal';
@@ -95,5 +97,10 @@ export class MealDialogComponent {
     if (input && input.value) {
       this.data.meal.imageUrl = input.value;
     }
+  }
+
+  // Add this method to your component class:
+  updateEffortLevel(level: number): void {
+    this.data.meal.effortLevel = level;
   }
 }

@@ -1,0 +1,8 @@
+<div class="effort-level" [class]="size">
+    <span *ngFor="let hat of hats" 
+          [class.active]="hat <= level"
+          (click)="editable && onChange(hat)"
+          [class.clickable]="editable">
+      <mat-icon>kitchen</mat-icon>
+    </span>
+  </div>

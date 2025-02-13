@@ -28,15 +28,16 @@
       />
     </mat-form-field>
 
-    <!-- Effort Level (mat-slider placed outside of mat-form-field) -->
-    <mat-label>Effort Level</mat-label>
-    <mat-slider min="1" max="5" step="1" name="effortLevel"
-      ><input
-        matSliderThumb
-        [(ngModel)]="data.meal.effortLevel"
-        name="effortLevel"
-      />
-    </mat-slider>
+    <!-- Replace the existing effort level slider with: -->
+    <div class="effort-field">
+      <mat-label>Effort Level</mat-label>
+      <app-effort-level
+        [level]="data.meal.effortLevel"
+        [editable]="true"
+        size="large"
+        (levelChange)="updateEffortLevel($event)"
+      ></app-effort-level>
+    </div>
 
     <mat-form-field appearance="fill">
       <mat-label>Image URL</mat-label>
@@ -63,7 +64,7 @@
       <input
         matInput
         [(ngModel)]="newIngredient"
-        (keydown.enter)="addIngredient()"
+        (keyup.enter)="addIngredient()"
         placeholder="Type and press enter"
         name="Ingredients"
       />

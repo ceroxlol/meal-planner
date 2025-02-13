@@ -12,7 +12,12 @@
         {{ meal.cookingTime }} minutes
       </div>
       <div class="meal-details">
-        <span class="detail-label">Effort Level:</span> {{ meal.effortLevel }}/5
+        <span class="detail-label">Effort Level:</span>
+        <app-effort-level
+          [level]="meal.effortLevel"
+          [editable]="false"
+          size="medium"
+        ></app-effort-level>
       </div>
       <div class="ingredients">
         <h4>Ingredients:</h4>

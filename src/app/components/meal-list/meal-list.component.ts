@@ -11,13 +11,14 @@ import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MealService } from '../../services/meal.service';
+import { EffortLevelComponent } from "../../shared/effort-level/effort-level.component";
 
 @Component({
   selector: 'app-meal-list',
   standalone: true,
   templateUrl: './meal-list.component.html',
   styleUrls: ['./meal-list.component.css'],
-  imports: [MatListModule, CommonModule, MatCardModule],
+  imports: [MatListModule, CommonModule, MatCardModule, EffortLevelComponent],
 })
 export class MealListComponent implements OnChanges {
   meals: Meal[] = [];
